@@ -8,7 +8,9 @@ import android.graphics.Typeface
 import android.graphics.drawable.GradientDrawable
 import android.media.*
 import android.os.*
+import android.text.InputType
 import android.view.*
+import android.view.inputmethod.EditorInfo
 import android.widget.*
 import java.util.concurrent.Executors
 import java.util.concurrent.atomic.AtomicInteger
@@ -195,14 +197,18 @@ class MainActivity : Activity() {
             }
         }
         metronomeCard.item(metronomeToggle)
-        val tempoText = label("템포  $metronomeBpm BPM", 14f, ink, true)
+        val tempoText = button("템포  $metronomeBpm BPM · 직접 입력") {}.apply {
+            contentDescription = "메트로놈 BPM 직접 입력, 현재 $metronomeBpm BPM"
+        }
         metronomeCard.item(tempoText)
         val tempoSlider = SeekBar(this).apply {
             id = R.id.metronome_bpm; max = 200; progress = metronomeBpm - 40
             contentDescription = "메트로놈 템포, 분당 박자 수"
             setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
                 override fun onProgressChanged(bar: SeekBar?, progress: Int, fromUser: Boolean) {
-                    metronomeBpm = progress + 40; tempoText.text = "템포  $metronomeBpm BPM"
+                    metronomeBpm = progress + 40
+                    tempoText.text = "템포  $metronomeBpm BPM · 직접 입력"
+                    tempoText.contentDescription = "메트로놈 BPM 직접 입력, 현재 $metronomeBpm BPM"
                     updateMetronome()
                     getPreferences(MODE_PRIVATE).edit().putInt("metronomeBpm", metronomeBpm).apply()
                 }
@@ -210,6 +216,7 @@ class MainActivity : Activity() {
                 override fun onStopTrackingTouch(bar: SeekBar?) {}
             })
         }
+        tempoText.setOnClickListener { showTempoInput { tempoSlider.progress = it - 40 } }
         val tempoControls = LinearLayout(this).apply { gravity = Gravity.CENTER_VERTICAL }
         tempoControls.addView(button("−") { tempoSlider.progress = (tempoSlider.progress - 1).coerceAtLeast(0) }.apply {
             contentDescription = "템포 1 BPM 줄이기"
@@ -242,6 +249,47 @@ class MainActivity : Activity() {
         body.space(6)
         body.item(button("연결 도움말 · 음원 정보") { showHelp() })
         setContentView(scroll)
+    }
+
+    private fun showTempoInput(applyTempo: (Int) -> Unit) {
+        val input = EditText(this).apply {
+            inputType = InputType.TYPE_CLASS_NUMBER
+            imeOptions = EditorInfo.IME_ACTION_DONE
+            setSingleLine(true)
+            hint = "40~240 BPM"
+            contentDescription = "메트로놈 BPM 입력"
+            setText(metronomeBpm.toString())
+            selectAll()
+        }
+        val container = column().apply {
+            setPadding(dp(24), dp(8), dp(24), 0)
+            item(input)
+        }
+        val dialog = AlertDialog.Builder(this)
+            .setTitle("템포 직접 입력")
+            .setMessage("40~240 BPM 사이의 정수를 입력하세요.")
+            .setView(container)
+            .setPositiveButton("적용", null)
+            .setNegativeButton("취소", null)
+            .create()
+        fun submit() {
+            val bpm = input.text.toString().trim().toIntOrNull()
+            if (bpm == null || bpm !in 40..240) {
+                input.error = "40~240 사이의 정수를 입력해 주세요."
+                return
+            }
+            applyTempo(bpm)
+            dialog.dismiss()
+        }
+        dialog.setOnShowListener {
+            dialog.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener { submit() }
+            input.requestFocus()
+        }
+        input.setOnEditorActionListener { _, action, _ ->
+            if (action == EditorInfo.IME_ACTION_DONE) { submit(); true } else false
+        }
+        dialog.window?.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE)
+        dialog.show()
     }
 
     private fun showPorts() {
