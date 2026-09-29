@@ -9,6 +9,11 @@ import android.os.Handler
 import android.os.Looper
 import android.widget.Button
 import android.widget.TextView
+import android.widget.Switch
+import android.widget.SeekBar
+import android.widget.ScrollView
+import android.view.View
+import android.view.ViewGroup
 import androidx.test.core.app.ActivityScenario
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.platform.app.InstrumentationRegistry
@@ -39,6 +44,59 @@ class PianoIntegrationTest {
         val result = NativeEngine.selfTest(context.assets, File(outputDir, "piano-demo.wav").absolutePath)
         File(outputDir, "native-checks.txt").writeText(result)
         assertTrue(result, result.startsWith("PASS:"))
+    }
+
+    @Test fun metronomeControlsAndLifecycle() {
+        ActivityScenario.launch(MainActivity::class.java).use { scenario ->
+            until("Metronome UI not ready") {
+                var ready = false
+                scenario.onActivity { ready = it.findViewById<Switch>(R.id.metronome_toggle).isEnabled }
+                ready
+            }
+            assertEquals(0, NativeEngine.stats()[8])
+            scenario.onActivity {
+                it.findViewById<SeekBar>(R.id.metronome_bpm).progress = 97 // 137 BPM
+                it.findViewById<SeekBar>(R.id.metronome_volume).progress = 65
+                it.findViewById<Switch>(R.id.metronome_toggle).isChecked = true
+            }
+            until("Metronome did not produce beats") { NativeEngine.stats()[9] >= 2 }
+            assertEquals(1, NativeEngine.stats()[8])
+            scenario.onActivity { activity ->
+                val content = activity.findViewById<ViewGroup>(android.R.id.content)
+                (content.getChildAt(0) as ScrollView).fullScroll(View.FOCUS_DOWN)
+            }
+            instrumentation.waitForIdleSync()
+            scenario.onActivity { activity ->
+                val root = activity.window.decorView
+                val bitmap = Bitmap.createBitmap(root.width, root.height, Bitmap.Config.ARGB_8888)
+                root.draw(Canvas(bitmap))
+                File(outputDir, "metronome.png").outputStream().use { bitmap.compress(Bitmap.CompressFormat.PNG, 100, it) }
+                bitmap.recycle()
+            }
+            // Piano notes coexist with the click and survive the metronome switch.
+            for (note in listOf(48, 55, 60, 64, 67, 72)) NativeEngine.midi(0x90, note, 100)
+            until("Chord not mixed with metronome") { NativeEngine.stats()[4] >= 6 }
+            scenario.onActivity { it.findViewById<Switch>(R.id.metronome_toggle).isChecked = false }
+            assertEquals(0, NativeEngine.stats()[8])
+            assertTrue(NativeEngine.stats()[4] >= 6)
+            scenario.onActivity { it.findViewById<Switch>(R.id.metronome_toggle).isChecked = true }
+            scenario.onActivity { it.findViewById<Button>(R.id.panic).performClick() }
+            until("Stop all left a sound running") { NativeEngine.stats()[4] == 0 && NativeEngine.stats()[8] == 0 }
+            scenario.onActivity { it.findViewById<Switch>(R.id.metronome_toggle).isChecked = true }
+            scenario.moveToState(androidx.lifecycle.Lifecycle.State.CREATED)
+            until("Metronome stream still running in background") { NativeEngine.stats()[0] == 0 }
+            assertEquals(0, NativeEngine.stats()[8])
+            scenario.moveToState(androidx.lifecycle.Lifecycle.State.RESUMED)
+            until("Audio did not resume") { NativeEngine.stats()[0] == 1 }
+            scenario.recreate()
+            until("Audio did not restart after recreation") { NativeEngine.stats()[0] == 1 }
+            scenario.onActivity {
+                assertFalse(it.findViewById<Switch>(R.id.metronome_toggle).isChecked)
+                assertEquals(97, it.findViewById<SeekBar>(R.id.metronome_bpm).progress)
+                assertEquals(65, it.findViewById<SeekBar>(R.id.metronome_volume).progress)
+            }
+            assertEquals(0, NativeEngine.stats()[8])
+        }
     }
 
     @Suppress("DEPRECATION")

@@ -15,6 +15,10 @@ jobs:
         with:
           packages: platform-tools
       - uses: gradle/actions/setup-gradle@v4
+      - name: Test metronome timing and mixing
+        run: |
+          c++ -std=c++17 -O2 -Wall -Wextra -Werror -Iapp/src/main/cpp app/src/test/cpp/MetronomeTest.cpp -o /tmp/piano-metronome-test
+          /tmp/piano-metronome-test
       - run: sdkmanager 'platforms;android-35' 'build-tools;35.0.0' 'ndk;27.2.12479018' 'cmake;3.22.1'
       - run: ./gradlew :app:assembleDebug :app:testDebugUnitTest :app:lintDebug :app:assembleDebugAndroidTest
       - uses: actions/upload-artifact@v4

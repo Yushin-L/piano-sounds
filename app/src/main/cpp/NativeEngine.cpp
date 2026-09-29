@@ -1,5 +1,6 @@
 #include "PianoSynth.h"
 #include "EventQueue.h"
+#include "Metronome.h"
 #include <jni.h>
 #include <android/asset_manager_jni.h>
 #include <oboe/Oboe.h>
@@ -12,6 +13,9 @@ class Engine final : public oboe::AudioStreamDataCallback, public oboe::AudioStr
 public:
     PianoSynth synth;
     EventQueue queue;
+    Metronome metronome;
+    // One atomic snapshot for enabled (bit 16), volume (bits 8..14), BPM (0..7).
+    std::atomic<int> metronomeConfig{100 | (50 << 8)}, metronomeBeats{0};
     std::shared_ptr<oboe::AudioStream> stream;
     std::atomic<bool> running{false}, silence{false}, disconnected{false};
     std::atomic<float> gain{0.7f};
@@ -39,6 +43,7 @@ public:
         }
         if (result != oboe::Result::OK) return false;
         synth.sampleRate(stream->getSampleRate());
+        metronome.prepare(stream->getSampleRate());
         sampleRate.store(stream->getSampleRate()); burst.store(stream->getFramesPerBurst());
         stream->setBufferSizeInFrames(stream->getFramesPerBurst() * 2);
         buffer.store(stream->getBufferSizeInFrames());
@@ -51,6 +56,7 @@ public:
         running.store(false);
         if (stream) { stream->close(); stream.reset(); }
         queue.discard(); synth.panic(); voices.store(0);
+        metronomeConfig.fetch_and(~(1 << 16)); metronome.reset(); metronomeBeats.store(0);
         silence.store(false);
     }
     oboe::DataCallbackResult onAudioReady(oboe::AudioStream* audio, void* data, int32_t frames) override {
@@ -60,6 +66,10 @@ public:
         for (unsigned n = 0; n < EventQueue::capacity && queue.pop(event); ++n)
             synth.midi(event.status, event.a, event.b);
         synth.render(static_cast<float*>(data), frames, gain.load(std::memory_order_relaxed));
+        const int config = metronomeConfig.load(std::memory_order_relaxed);
+        metronome.mix(static_cast<float*>(data), frames, (config & (1 << 16)) != 0,
+                      config & 255, (config >> 8) & 127);
+        metronomeBeats.store(static_cast<int>(metronome.beats()), std::memory_order_relaxed);
         voices.store(synth.activeVoices(), std::memory_order_relaxed);
         const auto count = audio->getXRunCount();
         if (count) xruns.store(count.value(), std::memory_order_relaxed);
@@ -90,9 +100,14 @@ JNIEXPORT void JNICALL Java_com_pianosounds_app_NativeEngine_panic(JNIEnv*, jobj
 JNIEXPORT void JNICALL Java_com_pianosounds_app_NativeEngine_volume(JNIEnv*, jobject, jfloat value) {
     engine.gain.store(std::isfinite(value) ? std::clamp(value, 0.0f, 1.0f) : 0.7f);
 }
+JNIEXPORT void JNICALL Java_com_pianosounds_app_NativeEngine_metronome(JNIEnv*, jobject, jboolean enabled, jint bpm, jint volume) {
+    engine.metronomeConfig.store((enabled ? 1 << 16 : 0) | std::clamp(bpm, 40, 240) |
+                                (std::clamp(volume, 0, 100) << 8));
+}
 JNIEXPORT jintArray JNICALL Java_com_pianosounds_app_NativeEngine_stats(JNIEnv* env, jobject) {
     jint values[] = {engine.running.load(), engine.sampleRate.load(), engine.burst.load(), engine.buffer.load(),
-                     engine.voices.load(), engine.xruns.load(), engine.drops.load(), engine.disconnected.load()};
-    auto array = env->NewIntArray(8); env->SetIntArrayRegion(array, 0, 8, values); return array;
+                     engine.voices.load(), engine.xruns.load(), engine.drops.load(), engine.disconnected.load(),
+                     (engine.metronomeConfig.load() >> 16) & 1, engine.metronomeBeats.load()};
+    auto array = env->NewIntArray(10); env->SetIntArrayRegion(array, 0, 10, values); return array;
 }
 }
