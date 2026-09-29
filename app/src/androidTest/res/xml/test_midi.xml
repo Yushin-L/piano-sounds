@@ -1,0 +1,6 @@
+<devices>
+    <device manufacturer="Piano Sounds Tests" product="KeyLab Test Loopback" name="KeyLab Test Loopback">
+        <input-port name="Test injection" />
+        <output-port name="MIDI" />
+    </device>
+</devices>

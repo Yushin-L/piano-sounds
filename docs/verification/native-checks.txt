@@ -1,0 +1,1 @@
+PASS: 90 samples, 88 notes, velocity, sustain, channels, CC reset, retrigger, 96 voices, limiting, rates, concurrent queue, stereo WAV

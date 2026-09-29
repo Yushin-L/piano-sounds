@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.pianosounds.app.MidiParserTest" tests="8" skipped="0" failures="0" errors="0" timestamp="2026-09-21T16:46:26" hostname="infmedix-MS-7D99" time="0.014">
+  <properties/>
+  <testcase name="honorsOffsetAndReset" classname="com.pianosounds.app.MidiParserTest" time="0.01"/>
+  <testcase name="systemCommonCancelsRunningStatus" classname="com.pianosounds.app.MidiParserTest" time="0.001"/>
+  <testcase name="statusResynchronizesTruncatedMessage" classname="com.pianosounds.app.MidiParserTest" time="0.0"/>
+  <testcase name="splitPacketsAndRunningStatus" classname="com.pianosounds.app.MidiParserTest" time="0.0"/>
+  <testcase name="allPacketBoundariesAreEquivalent" classname="com.pianosounds.app.MidiParserTest" time="0.001"/>
+  <testcase name="singleByteMessagesDoNotConsumeNextStatus" classname="com.pianosounds.app.MidiParserTest" time="0.0"/>
+  <testcase name="resetSilencesAndClearsRunningStatus" classname="com.pianosounds.app.MidiParserTest" time="0.0"/>
+  <testcase name="realtimeCanInterruptMessagesAndSysex" classname="com.pianosounds.app.MidiParserTest" time="0.0"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

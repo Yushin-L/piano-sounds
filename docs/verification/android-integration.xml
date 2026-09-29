@@ -1,0 +1,10 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<testsuite name="com.pianosounds.app.PianoIntegrationTest" tests="2" failures="0" errors="0" skipped="0" time="42.868" timestamp="2026-09-21T16:50:36" hostname="localhost">
+  <properties>
+    <property name="device" value="piano_atd35(AVD) - 15" />
+    <property name="flavor" value="" />
+    <property name="project" value=":app" />
+  </properties>
+  <testcase name="sampleBankAndNativeAudioBehavior" classname="com.pianosounds.app.PianoIntegrationTest" time="5.454" />
+  <testcase name="appReceivesRealAndroidMidiAndRecoversAcrossLifecycle" classname="com.pianosounds.app.PianoIntegrationTest" time="30.84" />
+</testsuite>

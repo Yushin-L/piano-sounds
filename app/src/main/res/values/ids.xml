@@ -1,0 +1,8 @@
+<resources>
+    <item name="connection_status" type="id" />
+    <item name="audio_status" type="id" />
+    <item name="input_status" type="id" />
+    <item name="panic" type="id" />
+    <item name="preview" type="id" />
+    <item name="volume" type="id" />
+</resources>

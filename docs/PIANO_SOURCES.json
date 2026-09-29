@@ -1,0 +1,726 @@
+{
+  "revision": "3382bf9496bba2486f5ab0de55a264d1dfc38404",
+  "bankSha256": "8d7af858a43cd935d012769765bc2d59dfe165ccc58d46a24a29efd47e4e335e",
+  "samples": [
+    {
+      "file": "Samples/A0v4.flac",
+      "sha256": "b0b54771be38214c553edb113d4586a17f634513e2db06bd3997caed428b4f8f",
+      "root": 21,
+      "layer": 4,
+      "offset": 1026,
+      "frames": 288000
+    },
+    {
+      "file": "Samples/A0v9.flac",
+      "sha256": "02a70183eb6ae395f477fa4a38288f06fccbec49175945cc2da4aa0f7c3b30c2",
+      "root": 21,
+      "layer": 9,
+      "offset": 1191,
+      "frames": 288000
+    },
+    {
+      "file": "Samples/A0v14.flac",
+      "sha256": "0c163eb4900eed9fe37c4de87db29e22bf0f0e449dc38d5fe1ca03f588bbc779",
+      "root": 21,
+      "layer": 14,
+      "offset": 1361,
+      "frames": 288000
+    },
+    {
+      "file": "Samples/C1v4.flac",
+      "sha256": "bfd3b62c6944faec44f35b2a225d5cf0f0c668d5198812beb1d1cc73c5cd2c5e",
+      "root": 24,
+      "layer": 4,
+      "offset": 2272,
+      "frames": 288000
+    },
+    {
+      "file": "Samples/C1v9.flac",
+      "sha256": "2dd8dfedd491a07f4bb44d3c70662e4e131f1a4be310d13a7e01b31dff21193a",
+      "root": 24,
+      "layer": 9,
+      "offset": 1794,
+      "frames": 288000
+    },
+    {
+      "file": "Samples/C1v14.flac",
+      "sha256": "d0906107101e04b9d233b5e8edeb733f9a69d2f9fd854963b859dfbe371703dc",
+      "root": 24,
+      "layer": 14,
+      "offset": 2418,
+      "frames": 288000
+    },
+    {
+      "file": "Samples/D#1v4.flac",
+      "sha256": "db590cef46d071ef8b0258d3f06b785260cb5b078f2ff7d8d7e8c8574851c152",
+      "root": 27,
+      "layer": 4,
+      "offset": 1369,
+      "frames": 288000
+    },
+    {
+      "file": "Samples/D#1v9.flac",
+      "sha256": "6fbf864207bdf2024474937f90ae038352c6533ef7a58ca9d7e294e6944155e8",
+      "root": 27,
+      "layer": 9,
+      "offset": 1237,
+      "frames": 288000
+    },
+    {
+      "file": "Samples/D#1v14.flac",
+      "sha256": "03edec1978784467c789f533e1f2b01c773ac33d8e7567e30a5a194419a1328a",
+      "root": 27,
+      "layer": 14,
+      "offset": 1264,
+      "frames": 288000
+    },
+    {
+      "file": "Samples/F#1v4.flac",
+      "sha256": "86ed38cc5c5d6bf0e7878a852eecedd0a36d258b9fc25825261abede438a1e8d",
+      "root": 30,
+      "layer": 4,
+      "offset": 1357,
+      "frames": 288000
+    },
+    {
+      "file": "Samples/F#1v9.flac",
+      "sha256": "b18d29c7598b785354fa7d34c4295b6b3156e61e68e97a833800afcf7270cf26",
+      "root": 30,
+      "layer": 9,
+      "offset": 1390,
+      "frames": 288000
+    },
+    {
+      "file": "Samples/F#1v14.flac",
+      "sha256": "b347b8f3371a30bcfc36355f827861e0060f6b0d5368a96ff9fe4c3ad79445cb",
+      "root": 30,
+      "layer": 14,
+      "offset": 1217,
+      "frames": 288000
+    },
+    {
+      "file": "Samples/A1v4.flac",
+      "sha256": "a1f2cabbc5fbfce7825b465dc3230578d70a935b756254250473eb984cf9b2ae",
+      "root": 33,
+      "layer": 4,
+      "offset": 462,
+      "frames": 288000
+    },
+    {
+      "file": "Samples/A1v9.flac",
+      "sha256": "65a782873ddc11233f7a414ee84bbb56d9d80e8c0c2a4258241b5ddfa4d94520",
+      "root": 33,
+      "layer": 9,
+      "offset": 453,
+      "frames": 288000
+    },
+    {
+      "file": "Samples/A1v14.flac",
+      "sha256": "4f89e01e5d2d2823250e433fa670639cd792bfe7a9dc4a0cb70808192d9e6929",
+      "root": 33,
+      "layer": 14,
+      "offset": 800,
+      "frames": 288000
+    },
+    {
+      "file": "Samples/C2v4.flac",
+      "sha256": "25d2ac48536df4b2241c54d4c180432c8a838143e876182801f5a5f92b4f898f",
+      "root": 36,
+      "layer": 4,
+      "offset": 945,
+      "frames": 288000
+    },
+    {
+      "file": "Samples/C2v9.flac",
+      "sha256": "26b839cd6518c4852204ed4d531eaa2372b2feb00f5b5edd196c37b3ad63ed1c",
+      "root": 36,
+      "layer": 9,
+      "offset": 751,
+      "frames": 288000
+    },
+    {
+      "file": "Samples/C2v14.flac",
+      "sha256": "65d51d2a3abe31db9247aff0b805bb686b10e1a443e18ebda4684705f5f5f8d0",
+      "root": 36,
+      "layer": 14,
+      "offset": 630,
+      "frames": 288000
+    },
+    {
+      "file": "Samples/D#2v4.flac",
+      "sha256": "1e05e5b875256fe71006b3c3e61440196f85a85c44aba9ecb7b1461ff3a10a02",
+      "root": 39,
+      "layer": 4,
+      "offset": 595,
+      "frames": 288000
+    },
+    {
+      "file": "Samples/D#2v9.flac",
+      "sha256": "f764c397fba28f77625fd97965a40e6d5d4899c4d220979c22ed3f4a26b302a6",
+      "root": 39,
+      "layer": 9,
+      "offset": 618,
+      "frames": 288000
+    },
+    {
+      "file": "Samples/D#2v14.flac",
+      "sha256": "ac1f7478fc1238db21a2bdd9003251cc8d97563e5f6433072e6859e389139fd4",
+      "root": 39,
+      "layer": 14,
+      "offset": 818,
+      "frames": 288000
+    },
+    {
+      "file": "Samples/F#2v4.flac",
+      "sha256": "bc9d3a3e4ff5b2219d220e984eea3ab8e84d7222f89b5cfc4069cedb8af718e5",
+      "root": 42,
+      "layer": 4,
+      "offset": 808,
+      "frames": 288000
+    },
+    {
+      "file": "Samples/F#2v9.flac",
+      "sha256": "210657414189ff51cd5e53824e5155f9d1fc73bc1a8f707e932473681f0a6d32",
+      "root": 42,
+      "layer": 9,
+      "offset": 832,
+      "frames": 288000
+    },
+    {
+      "file": "Samples/F#2v14.flac",
+      "sha256": "5bb94e90baa7dc7149bd8594e0fd598b7378ed011546d03636889de3ad258510",
+      "root": 42,
+      "layer": 14,
+      "offset": 1045,
+      "frames": 288000
+    },
+    {
+      "file": "Samples/A2v4.flac",
+      "sha256": "43563ad2ee61ba19560b969b79286b98edbd5ac6867b08bd956dac75bb376d27",
+      "root": 45,
+      "layer": 4,
+      "offset": 577,
+      "frames": 288000
+    },
+    {
+      "file": "Samples/A2v9.flac",
+      "sha256": "01f15f2aaabe324a473450eb99a1fe60af2594d9c6bd8c9dacba899773ec8c08",
+      "root": 45,
+      "layer": 9,
+      "offset": 799,
+      "frames": 288000
+    },
+    {
+      "file": "Samples/A2v14.flac",
+      "sha256": "7078117c5256ea3bf2cc8f68e8cb3c8041f9f7890d4d6c4ec4c73ff5547a1c1b",
+      "root": 45,
+      "layer": 14,
+      "offset": 838,
+      "frames": 288000
+    },
+    {
+      "file": "Samples/C3v4.flac",
+      "sha256": "172b7e9fe81980ddb64334477459ea91e039b3c083f76a022682182be3482660",
+      "root": 48,
+      "layer": 4,
+      "offset": 693,
+      "frames": 288000
+    },
+    {
+      "file": "Samples/C3v9.flac",
+      "sha256": "94b8e18eb2c6cbf28a6497ca6c8e8b08b5ad93528e1799f53903a7b7501cdf05",
+      "root": 48,
+      "layer": 9,
+      "offset": 935,
+      "frames": 288000
+    },
+    {
+      "file": "Samples/C3v14.flac",
+      "sha256": "3f3720d2af8f5190d86155032d5757323236704c4d0b150d1cf3348c2fbe7aa3",
+      "root": 48,
+      "layer": 14,
+      "offset": 1041,
+      "frames": 288000
+    },
+    {
+      "file": "Samples/D#3v4.flac",
+      "sha256": "cc750a11b5cd63da9367fbe152ae51f18a6cb248364a24e1e76ee6b17d3d4b96",
+      "root": 51,
+      "layer": 4,
+      "offset": 816,
+      "frames": 288000
+    },
+    {
+      "file": "Samples/D#3v9.flac",
+      "sha256": "05c3520d4cce586a9978ea791537a66dcb11052050902ede968d67a6b1093b56",
+      "root": 51,
+      "layer": 9,
+      "offset": 806,
+      "frames": 288000
+    },
+    {
+      "file": "Samples/D#3v14.flac",
+      "sha256": "49eecdcb91fc27693277a08381e0db2b8fcbfe2b401d3ff53108c93a2db12597",
+      "root": 51,
+      "layer": 14,
+      "offset": 853,
+      "frames": 288000
+    },
+    {
+      "file": "Samples/F#3v4.flac",
+      "sha256": "1d338855b9447cb85efd063d331b97471836967fefbb8eef2b964718b38f26cd",
+      "root": 54,
+      "layer": 4,
+      "offset": 818,
+      "frames": 288000
+    },
+    {
+      "file": "Samples/F#3v9.flac",
+      "sha256": "60550b92468f54d6d6ab7dec3c45b5611b38d6500db88e59b543dc996b8856b6",
+      "root": 54,
+      "layer": 9,
+      "offset": 815,
+      "frames": 288000
+    },
+    {
+      "file": "Samples/F#3v14.flac",
+      "sha256": "01cd91b78d8d62d25dc62d42b7b36d5fd8d39c799ebd44340271c197960db854",
+      "root": 54,
+      "layer": 14,
+      "offset": 820,
+      "frames": 288000
+    },
+    {
+      "file": "Samples/A3v4.flac",
+      "sha256": "7cfc9b2a18f8728431dfc236ca5c97793d3bdb413fd713eb13198c673982618f",
+      "root": 57,
+      "layer": 4,
+      "offset": 546,
+      "frames": 288000
+    },
+    {
+      "file": "Samples/A3v9.flac",
+      "sha256": "75f4fb04dd54e416b93863203377aaf95dab2a980cf2261037b178d180a96514",
+      "root": 57,
+      "layer": 9,
+      "offset": 690,
+      "frames": 288000
+    },
+    {
+      "file": "Samples/A3v14.flac",
+      "sha256": "cbb09626cc9783d79ae11574844187b89aca248a8caf2ae96d521374ff1cb931",
+      "root": 57,
+      "layer": 14,
+      "offset": 802,
+      "frames": 288000
+    },
+    {
+      "file": "Samples/C4v4.flac",
+      "sha256": "c68ab13a20f4e84361843417a17521d0cf7bd9587a43fbb36c04db56045990ed",
+      "root": 60,
+      "layer": 4,
+      "offset": 709,
+      "frames": 288000
+    },
+    {
+      "file": "Samples/C4v9.flac",
+      "sha256": "512e6c8d114fa700113ffc8b42f71101574499bec2477354295ecceddabf9979",
+      "root": 60,
+      "layer": 9,
+      "offset": 754,
+      "frames": 288000
+    },
+    {
+      "file": "Samples/C4v14.flac",
+      "sha256": "36877a8dd5dd2a00d9a6c616c2c4bff088fae9e07fe2431a5820e5fa7148844f",
+      "root": 60,
+      "layer": 14,
+      "offset": 662,
+      "frames": 288000
+    },
+    {
+      "file": "Samples/D#4v4.flac",
+      "sha256": "dfd69f142177241a5219427e0c7012a19002b6bc98e11bafe287d7190f847b79",
+      "root": 63,
+      "layer": 4,
+      "offset": 731,
+      "frames": 288000
+    },
+    {
+      "file": "Samples/D#4v9.flac",
+      "sha256": "74a0cc7b294b24707ffb947b4869a26042b0451ed53a3bbf32622fcf48b46f17",
+      "root": 63,
+      "layer": 9,
+      "offset": 616,
+      "frames": 288000
+    },
+    {
+      "file": "Samples/D#4v14.flac",
+      "sha256": "a23e9dfa81c8dab9df274a9fb9052e1bfc8298258762109da58c6d329ebf9c10",
+      "root": 63,
+      "layer": 14,
+      "offset": 657,
+      "frames": 288000
+    },
+    {
+      "file": "Samples/F#4v4.flac",
+      "sha256": "e024309f6f410365a9dea891a96d6df920e93d0c401a161f642c6e5e33de6ae3",
+      "root": 66,
+      "layer": 4,
+      "offset": 525,
+      "frames": 288000
+    },
+    {
+      "file": "Samples/F#4v9.flac",
+      "sha256": "b3feb5668f614d845dab1ea7d7877c7b6ff45498a1f50476cee90f88d2aaf41d",
+      "root": 66,
+      "layer": 9,
+      "offset": 732,
+      "frames": 288000
+    },
+    {
+      "file": "Samples/F#4v14.flac",
+      "sha256": "9cf5e61077118cc0ffe5a1e0c0d0cd27bdc3c97a31a6e43e61b01bf12fc29d06",
+      "root": 66,
+      "layer": 14,
+      "offset": 570,
+      "frames": 288000
+    },
+    {
+      "file": "Samples/A4v4.flac",
+      "sha256": "4c6cc00539fef67b2f9540d789f099fb3dd04d779f4d4d385224a4d815918583",
+      "root": 69,
+      "layer": 4,
+      "offset": 663,
+      "frames": 288000
+    },
+    {
+      "file": "Samples/A4v9.flac",
+      "sha256": "b25017e9cd0cc9fa9e22821eb3643390df467978d043b90f045b053d245a29ee",
+      "root": 69,
+      "layer": 9,
+      "offset": 669,
+      "frames": 288000
+    },
+    {
+      "file": "Samples/A4v14.flac",
+      "sha256": "36c9a8e3db25d1ffaf43e08c46075b6b1eef427aed675848dbe13ccccd7b8957",
+      "root": 69,
+      "layer": 14,
+      "offset": 730,
+      "frames": 288000
+    },
+    {
+      "file": "Samples/C5v4.flac",
+      "sha256": "0d7c117cdb01b261cb3a303c4a7c9f56ef42015078e3c69ab3aa19dd39287a6c",
+      "root": 72,
+      "layer": 4,
+      "offset": 587,
+      "frames": 288000
+    },
+    {
+      "file": "Samples/C5v9.flac",
+      "sha256": "72adc6b756ed07454a98ff2c4e54082f7477e07147b8eb4c906d210cc3f68c72",
+      "root": 72,
+      "layer": 9,
+      "offset": 677,
+      "frames": 288000
+    },
+    {
+      "file": "Samples/C5v14.flac",
+      "sha256": "0d012b8ae72e909a56fc019728ab88c8087344c42c8e83774d8f7915685d0a86",
+      "root": 72,
+      "layer": 14,
+      "offset": 732,
+      "frames": 288000
+    },
+    {
+      "file": "Samples/D#5v4.flac",
+      "sha256": "c7f25db21896025a0b71832e3e6b859a5e88f270b8230555b9ac4772913bf821",
+      "root": 75,
+      "layer": 4,
+      "offset": 719,
+      "frames": 288000
+    },
+    {
+      "file": "Samples/D#5v9.flac",
+      "sha256": "c7c481ab0b43d21e952f372204dd048d3e06e9744aaa39a45209377ca72ffe5d",
+      "root": 75,
+      "layer": 9,
+      "offset": 744,
+      "frames": 288000
+    },
+    {
+      "file": "Samples/D#5v14.flac",
+      "sha256": "e5aa0a114dbea9254caa833dd2e33035b1ae013120d28a3e5de577311113b4c0",
+      "root": 75,
+      "layer": 14,
+      "offset": 648,
+      "frames": 288000
+    },
+    {
+      "file": "Samples/F#5v4.flac",
+      "sha256": "2a7a898c7e1b1287cc6b79844b24bd7cd39f232573e380f2264e1694a38845c1",
+      "root": 78,
+      "layer": 4,
+      "offset": 692,
+      "frames": 278975
+    },
+    {
+      "file": "Samples/F#5v9.flac",
+      "sha256": "06f95a6014fc9f9a3fec9f786fccdd3d636e27986c76a0294390981df88ac25f",
+      "root": 78,
+      "layer": 9,
+      "offset": 733,
+      "frames": 287547
+    },
+    {
+      "file": "Samples/F#5v14.flac",
+      "sha256": "5833ca7acb63be8124e2bb1f9060585c03a1185338ce32ad1940b23190667e86",
+      "root": 78,
+      "layer": 14,
+      "offset": 767,
+      "frames": 288000
+    },
+    {
+      "file": "Samples/A5v4.flac",
+      "sha256": "36bfb6bd47e8412e842334856c0c7f19005462f69f7cc9e1829bd7bfe0e3fe72",
+      "root": 81,
+      "layer": 4,
+      "offset": 1122,
+      "frames": 164223
+    },
+    {
+      "file": "Samples/A5v9.flac",
+      "sha256": "9842fd4beb177ba7e898eead28c3ce6869319e25f862e322c26fe03e354a5542",
+      "root": 81,
+      "layer": 9,
+      "offset": 395,
+      "frames": 251722
+    },
+    {
+      "file": "Samples/A5v14.flac",
+      "sha256": "64c1c37e0d57a774b19b5cc903d0087a050d597471548e67c032b11a63e64315",
+      "root": 81,
+      "layer": 14,
+      "offset": 729,
+      "frames": 254988
+    },
+    {
+      "file": "Samples/C6v4.flac",
+      "sha256": "1f3f32e401bbd2a87a9c5b094aa6f748213fe762f3026554eb60305c02399ef7",
+      "root": 84,
+      "layer": 4,
+      "offset": 777,
+      "frames": 130369
+    },
+    {
+      "file": "Samples/C6v9.flac",
+      "sha256": "5804f0e48b9879fa77d719a63bf6be517f6e29e8397828f97a5191080141e160",
+      "root": 84,
+      "layer": 9,
+      "offset": 524,
+      "frames": 145425
+    },
+    {
+      "file": "Samples/C6v14.flac",
+      "sha256": "4687e196d0818c4718f93530d054f8ae37eba61a93b1f5311fb67b62b01972fd",
+      "root": 84,
+      "layer": 14,
+      "offset": 524,
+      "frames": 149469
+    },
+    {
+      "file": "Samples/D#6v4.flac",
+      "sha256": "bdc6b8a89901d8b5f753ba8fdbd18cc743bdeb15f47502f4b0fbe85e1335760f",
+      "root": 87,
+      "layer": 4,
+      "offset": 594,
+      "frames": 157405
+    },
+    {
+      "file": "Samples/D#6v9.flac",
+      "sha256": "a1f6369419f6db72d64d7d9c01267d945368031cd2d7cc0917f9eb62d104e95c",
+      "root": 87,
+      "layer": 9,
+      "offset": 572,
+      "frames": 158827
+    },
+    {
+      "file": "Samples/D#6v14.flac",
+      "sha256": "f53c471c35552b43a69b2a612cf4e5f0bc89223d4adff38c94d5932fb250d08a",
+      "root": 87,
+      "layer": 14,
+      "offset": 646,
+      "frames": 156781
+    },
+    {
+      "file": "Samples/F#6v4.flac",
+      "sha256": "dc69c0e742459d41b91e1c2ccba30160fe27bc70bd41483454c23a41321db0a5",
+      "root": 90,
+      "layer": 4,
+      "offset": 662,
+      "frames": 132550
+    },
+    {
+      "file": "Samples/F#6v9.flac",
+      "sha256": "8cb6bda1103ae975ad8e168b9d09e36f632cd74ee0a9c5bfa19bc8df02f8607c",
+      "root": 90,
+      "layer": 9,
+      "offset": 625,
+      "frames": 140305
+    },
+    {
+      "file": "Samples/F#6v14.flac",
+      "sha256": "12ca461e24d74f9038fb0f1150b4fb0055fc102e7978e297a4041fcd3589c6cd",
+      "root": 90,
+      "layer": 14,
+      "offset": 601,
+      "frames": 146286
+    },
+    {
+      "file": "Samples/A6v4.flac",
+      "sha256": "7d27a6ae1f006a1feeeb230afaa269ff67932ac8fac06ecd91261064cca3ef2b",
+      "root": 93,
+      "layer": 4,
+      "offset": 619,
+      "frames": 151928
+    },
+    {
+      "file": "Samples/A6v9.flac",
+      "sha256": "8005b652911645ba6e6be219ce0645eee0da9f134b0d33ccb9fbbe9ac1e73893",
+      "root": 93,
+      "layer": 9,
+      "offset": 657,
+      "frames": 160848
+    },
+    {
+      "file": "Samples/A6v14.flac",
+      "sha256": "0f63c9045b7ecaf56f598932da1895323d0110388b60c803fb91f6a63296c7ca",
+      "root": 93,
+      "layer": 14,
+      "offset": 737,
+      "frames": 162061
+    },
+    {
+      "file": "Samples/C7v4.flac",
+      "sha256": "02f3af88370ddd201d280da57680df0c6b372557340f7aabfe399ce7ca882353",
+      "root": 96,
+      "layer": 4,
+      "offset": 548,
+      "frames": 97131
+    },
+    {
+      "file": "Samples/C7v9.flac",
+      "sha256": "8449a8ecb1c71784b2184a70779d800550224dc62aff20452b1d766704ee4826",
+      "root": 96,
+      "layer": 9,
+      "offset": 631,
+      "frames": 97800
+    },
+    {
+      "file": "Samples/C7v14.flac",
+      "sha256": "4c31359df14477e517a926e92d51bc79b40fcb7a6a8525bb015494e362f1a799",
+      "root": 96,
+      "layer": 14,
+      "offset": 597,
+      "frames": 97513
+    },
+    {
+      "file": "Samples/D#7v4.flac",
+      "sha256": "a8f34f346e4510c3b6d979da6d9bf2d8fe13ec81e4b4225a525725e01df1ccdc",
+      "root": 99,
+      "layer": 4,
+      "offset": 694,
+      "frames": 115623
+    },
+    {
+      "file": "Samples/D#7v9.flac",
+      "sha256": "8da45d4254dffaa3aaf2c76f65a6299013eb7f53ba95526dd14aff1aadc4ccb3",
+      "root": 99,
+      "layer": 9,
+      "offset": 644,
+      "frames": 114601
+    },
+    {
+      "file": "Samples/D#7v14.flac",
+      "sha256": "c02f3db653ae521058e98b1f75b404a79ca9b4c0fc3453e5b7c62063646edd5a",
+      "root": 99,
+      "layer": 14,
+      "offset": 613,
+      "frames": 114671
+    },
+    {
+      "file": "Samples/F#7v4.flac",
+      "sha256": "c42b84fca6700ab05a00b34c15bc120c5fdc2387abfa671c4ff8f5cc04dbffac",
+      "root": 102,
+      "layer": 4,
+      "offset": 679,
+      "frames": 113937
+    },
+    {
+      "file": "Samples/F#7v9.flac",
+      "sha256": "ab406ca9900da1ba05d889127a434eace52ef811789b0cc169707bf84d4a0779",
+      "root": 102,
+      "layer": 9,
+      "offset": 569,
+      "frames": 106923
+    },
+    {
+      "file": "Samples/F#7v14.flac",
+      "sha256": "9211c126e3fbfbbed3589606682867d0b57c6acbdf5a022e47c1ba4a7a294b91",
+      "root": 102,
+      "layer": 14,
+      "offset": 634,
+      "frames": 112680
+    },
+    {
+      "file": "Samples/A7v4.flac",
+      "sha256": "c07538c0f0bec38b06ae01be359029b831c3ef0bd90256800bb9630c96dc791b",
+      "root": 105,
+      "layer": 4,
+      "offset": 665,
+      "frames": 92318
+    },
+    {
+      "file": "Samples/A7v9.flac",
+      "sha256": "cdf7fd3442d3e2532e035c3729af62e3a536a6028086ee31f303e60e4e4bde81",
+      "root": 105,
+      "layer": 9,
+      "offset": 717,
+      "frames": 87366
+    },
+    {
+      "file": "Samples/A7v14.flac",
+      "sha256": "1bd611f5a1eebe4177ba37c7af4bdb60380edf9f7555d77e15ce58ad0dee0c62",
+      "root": 105,
+      "layer": 14,
+      "offset": 697,
+      "frames": 84531
+    },
+    {
+      "file": "Samples/C8v4.flac",
+      "sha256": "1f8ff28ffd159a073361814600b7b71d36aff470637390c0d1224ba135015e47",
+      "root": 108,
+      "layer": 4,
+      "offset": 655,
+      "frames": 67133
+    },
+    {
+      "file": "Samples/C8v9.flac",
+      "sha256": "25d8fa12d6d323edff35c8743325854ada1231c70d045536e1231eea4e676743",
+      "root": 108,
+      "layer": 9,
+      "offset": 579,
+      "frames": 91837
+    },
+    {
+      "file": "Samples/C8v14.flac",
+      "sha256": "1e60605c6553a04c64b464e7d51b19c0bdd60ebcc907a6c430a63f40bdb2779d",
+      "root": 108,
+      "layer": 14,
+      "offset": 596,
+      "frames": 96279
+    }
+  ]
+}

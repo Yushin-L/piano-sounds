@@ -1,0 +1,7 @@
+cmake_minimum_required(VERSION 3.22.1)
+project(piano LANGUAGES CXX)
+set(CMAKE_CXX_STANDARD 17)
+find_package(oboe REQUIRED CONFIG)
+add_library(piano SHARED PianoSynth.cpp NativeEngine.cpp NativeChecks.cpp)
+target_compile_options(piano PRIVATE -Wall -Wextra -Werror -O2)
+target_link_libraries(piano android log oboe::oboe)

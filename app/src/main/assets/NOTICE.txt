@@ -1,0 +1,9 @@
+Salamander Grand Piano v3 — Alexander Holm
+Creative Commons Attribution 3.0 Unported
+https://creativecommons.org/licenses/by/3.0/
+Source: https://github.com/sfzinstruments/SalamanderGrandPiano
+Revision: 3382bf9496bba2486f5ab0de55a264d1dfc38404
+Piano Sounds adaptation: 30 root notes, velocity layers 4/9/14, attack offsets, 24 kHz stereo PCM16, maximum 12-second samples with a 250ms end fade. The SFZ mapping is not included. No endorsement by the original author is implied.
+
+Oboe — Copyright Google LLC. Apache License 2.0.
+https://github.com/google/oboe

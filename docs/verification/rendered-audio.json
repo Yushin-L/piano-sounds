@@ -1,0 +1,9 @@
+{
+  "sampleRate": 48000,
+  "channels": 2,
+  "seconds": 6.0,
+  "peak": 0.985748291015625,
+  "rms": 0.11514391653978341,
+  "allFinite": true,
+  "stereoDifferenceRms": 0.15080956883893448
+}

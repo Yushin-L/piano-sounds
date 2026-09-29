@@ -1,0 +1,4 @@
+lib/arm64-v8a/libc++_shared.so: 0x4000, 0x4000, 0x4000, 0x4000
+lib/arm64-v8a/liboboe.so: 0x4000, 0x4000, 0x4000
+lib/arm64-v8a/libpiano.so: 0x4000, 0x4000, 0x4000
+APK ZIP alignment check passed with zipalign -c -P 16 4

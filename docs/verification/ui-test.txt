@@ -1,0 +1,10 @@
+Performing Streamed Install
+Success
+
+com.pianosounds.app.PianoIntegrationTest:.
+
+Time: 25.49
+
+OK (1 test)
+
+
