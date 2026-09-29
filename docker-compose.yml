@@ -1,0 +1,17 @@
+# 개발용 APK 다운로드 페이지. central-traefik 이 /apps/piano-sounds/ 로 라우팅한다
+# (/home/infmedix/dev/traefik/dynamic/piano-sounds.yml). 새 APK는 dist/ 와
+# scripts/serve_apk.py 를 갱신한 뒤 `docker compose restart` 로 반영한다.
+services:
+  piano-sounds-apk:
+    image: python:3.12-slim
+    container_name: piano-sounds-apk
+    command: ["python", "/app/scripts/serve_apk.py", "--bind", "0.0.0.0", "--port", "8765"]
+    volumes:
+      - ./scripts:/app/scripts:ro
+      - ./dist:/app/dist:ro
+    restart: unless-stopped
+    networks: [piano-sounds-network]
+
+networks:
+  piano-sounds-network:
+    name: piano-sounds-network
