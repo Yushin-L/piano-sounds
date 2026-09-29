@@ -63,6 +63,7 @@ extern "C" JNIEXPORT jstring JNICALL Java_com_pianosounds_app_NativeEngine_selfT
         for (int i = 0; i < 150; ++i) synth.midi(0x90 + i / 88, 21 + i % 88, 127);
         check(synth.activeVoices() == PianoSynth::kVoices, "voice limit failed");
         synth.render(block.data(), 4096, 1); energy(block);
+        for (float value : block) check(std::abs(value) <= 0.8901f, "limiter let peaks past -1 dBFS");
         synth.midi(0xff, 0, 0); synth.render(block.data(), 4096, 1);
         check(synth.activeVoices() == 0 && energy(block) == 0, "panic must silence everything");
         for (int rate : {44100, 48000, 96000}) {

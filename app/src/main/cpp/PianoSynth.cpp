@@ -102,6 +102,7 @@ void PianoSynth::midi(int status, int a, int b) {
 
 void PianoSynth::panic() {
     for (auto& v : voices_) v = Voice{};
+    limiter_.reset();
     sustain_.fill(false);
 }
 
@@ -138,12 +139,9 @@ void PianoSynth::render(float* output, int frames, float targetVolume) {
     for (int i = 0; i < frames; ++i) {
         volume_ += (targetVolume - volume_) * smoothing;
         if (std::abs(volume_ - targetVolume) < 1e-7f) volume_ = targetVolume;
-        for (int ch = 0; ch < 2; ++ch) {
-            const float x = output[i * 2 + ch] * volume_ * 1.4f;
-            // Transparent below 0.8, smooth saturation for loud chords.
-            const float magnitude = std::abs(x);
-            output[i * 2 + ch] = magnitude <= 0.8f ? x :
-                std::copysign(0.8f + 0.2f * (1.0f - std::exp(-(magnitude - 0.8f) * 5.0f)), x);
-        }
+        for (int ch = 0; ch < 2; ++ch) output[i * 2 + ch] *= volume_ * 1.4f;
     }
+    // Loud chords sum well past full scale; a gain limiter keeps attacks clean where
+    // per-sample saturation used to distort them (#1).
+    limiter_.process(output, frames);
 }

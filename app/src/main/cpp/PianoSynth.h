@@ -1,4 +1,5 @@
 #pragma once
+#include "Limiter.h"
 #include <android/asset_manager.h>
 #include <array>
 #include <cstdint>
@@ -12,8 +13,10 @@ struct PianoSample {
 class PianoSynth {
 public:
     static constexpr int kVoices = 96;
+    PianoSynth() { limiter_.prepare(rate_); }
     bool load(AAssetManager* assets);
-    void sampleRate(int rate) { rate_ = rate; }
+    // Allocates; call only while the audio stream is stopped.
+    void sampleRate(int rate) { rate_ = rate; limiter_.prepare(rate); }
     void midi(int status, int a, int b);
     void panic();
     void render(float* output, int frames, float targetVolume);
@@ -39,4 +42,5 @@ private:
     int rate_ = 48000;
     uint64_t clock_ = 0;
     float volume_ = 0.7f;
+    Limiter limiter_;
 };

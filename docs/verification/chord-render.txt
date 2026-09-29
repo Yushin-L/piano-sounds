@@ -1,0 +1,39 @@
+# ChordRender 출력 (48 kHz, 192프레임 블록). saturate = 1.1.1까지의 포화, limit = 1.1.2 리미터.
+# dist: 5 ms 단위로 게인을 맞춘 뒤 남는 파형 왜곡 에너지 (낮을수록 깨끗함).
+volume 70%
+scenario       stage       pre-peak     >0.8  out-peak   out-rms   max-GR     dist  voices
+single         saturate     -2.4dB    0.00%   -2.4dB  -22.3dB   0.0dB -177.1dB       1
+single         limit        -2.4dB    0.00%   -2.4dB  -22.3dB   0.0dB -177.1dB       1
+chord4         saturate      1.1dB    0.13%   -0.3dB  -18.6dB  -1.5dB -35.4dB       4
+chord4         limit         1.1dB    0.13%   -1.0dB  -19.2dB  -2.2dB -38.9dB       4
+chord6         saturate      5.9dB    0.62%   -0.0dB  -15.8dB  -5.9dB -24.4dB       6
+chord6         limit         5.9dB    0.62%   -1.0dB  -17.5dB  -6.9dB -31.6dB       6
+chord6_ff      saturate      7.2dB    1.11%   -0.0dB  -14.6dB  -7.2dB -21.5dB       6
+chord6_ff      limit         7.2dB    1.11%   -1.0dB  -16.7dB  -8.2dB -31.7dB       6
+changes        saturate      6.0dB    1.67%   -0.0dB  -11.5dB  -6.0dB -24.7dB      12
+changes        limit         6.0dB    1.67%   -1.0dB  -13.3dB  -7.0dB -32.7dB      12
+changes_pedal  saturate      6.1dB    1.51%   -0.0dB  -11.8dB  -6.1dB -24.8dB      12
+changes_pedal  limit         6.1dB    1.51%   -1.0dB  -13.6dB  -7.1dB -32.7dB      12
+pedal_wash     saturate      7.0dB    1.83%   -0.0dB  -11.0dB  -7.0dB -24.7dB      48
+pedal_wash     limit         7.0dB    1.83%   -1.0dB  -12.8dB  -8.0dB -33.3dB      48
+max |offline limit - synth output| = 1.79e-05
+PASS: synth output below -1 dBFS, chord distortion < -30 dB
+
+volume 100%
+scenario       stage       pre-peak     >0.8  out-peak   out-rms   max-GR     dist  voices
+single         saturate      0.7dB    0.15%   -0.4dB  -19.3dB  -1.1dB -37.2dB       1
+single         limit         0.7dB    0.15%   -1.0dB  -19.9dB  -1.7dB -45.1dB       1
+chord4         saturate      4.2dB    0.79%   -0.0dB  -15.7dB  -4.3dB -23.9dB       4
+chord4         limit         4.2dB    0.79%   -1.0dB  -17.4dB  -5.3dB -34.7dB       4
+chord6         saturate      9.0dB    2.05%   -0.0dB  -13.2dB  -9.0dB -18.4dB       6
+chord6         limit         9.0dB    2.05%   -1.0dB  -15.8dB -10.0dB -31.9dB       6
+chord6_ff      saturate     10.3dB    2.93%   -0.0dB  -12.2dB -10.3dB -16.6dB       6
+chord6_ff      limit        10.3dB    2.93%   -1.0dB  -15.2dB -11.3dB -31.9dB       6
+changes        saturate      9.1dB    5.50%   -0.0dB   -8.9dB  -9.1dB -18.4dB      12
+changes        limit         9.1dB    5.50%   -1.0dB  -12.1dB -10.1dB -30.6dB      12
+changes_pedal  saturate      9.2dB    4.97%   -0.0dB   -9.2dB  -9.2dB -18.5dB      12
+changes_pedal  limit         9.2dB    4.97%   -1.0dB  -12.3dB -10.2dB -31.1dB      12
+pedal_wash     saturate     10.1dB    6.40%   -0.0dB   -8.4dB -10.1dB -18.6dB      48
+pedal_wash     limit        10.1dB    6.40%   -1.0dB  -11.7dB -11.1dB -31.2dB      48
+max |offline limit - synth output| = 1.27e-05
+PASS: synth output below -1 dBFS, chord distortion < -30 dB

@@ -1,5 +1,29 @@
 # 검증 기록
 
+## 2026-09-29 화음 음질 개선 (1.1.2, #1)
+
+- 원인 측정: 실제 `PianoSynth`로 단음, 4·6음 화음, 빠른 코드 전환, 페달 유지/교체를 렌더링했다
+  ([ChordRender](../app/src/test/cpp/ChordRender.cpp), [결과](verification/chord-render.txt)).
+  기본 볼륨 70%에서 6음 화음 합산 피크가 +5.9~7.2 dBFS(100%에서 +9~10.3 dBFS)로, 포화 구간(|x|>0.8)에 매 어택마다 들어갔다.
+  5 ms 단위 게인을 제거한 뒤 남는 파형 왜곡은 -21.5~-24.8 dB, 볼륨 100%에서는 -16.6 dB까지 커졌다.
+- 수정: 샘플 단위 포화를 스테레오 연동 룩어헤드 리미터(2 ms, 릴리스 100 ms, -1 dBFS)로 교체했다.
+  같은 입력의 6음 화음·코드 전환에서 왜곡은 70%에서 -31.6~-33.3 dB(7~10 dB 개선),
+  100%에서 -30.6~-31.9 dB(12~15 dB 개선)이다.
+  임계값 아래(단음·약한 연주)는 2 ms 지연 외에 샘플 단위로 동일하다.
+  세게 친 화음 구간의 RMS는 1.5~3.3 dB 낮아진다(포화가 만들던 음량 증가분).
+- 비교 WAV: [6음 ff 포화](verification/chords/chord6_ff-saturate.wav) /
+  [리미터](verification/chords/chord6_ff-limit.wav),
+  [페달 코드 전환 포화](verification/chords/changes_pedal-saturate.wav) /
+  [리미터](verification/chords/changes_pedal-limit.wav).
+  포화 쪽은 1.1.1 합성기 출력과 오차 2e-5 이내로 일치함을 확인했다.
+- 새 네이티브 검사: `LimiterTest`(3개 샘플레이트, 임계값 아래 무변형, 최대 20배 과입력에서도
+  피크 한계, 버퍼 크기 독립, 복귀, 리셋 시 잔여음 없음), `ChordRender`(합성기 출력이 -1 dBFS 이하,
+  화음 왜곡 -30 dB 미만). 앱 자체 검사에 리미터 한계 검사를 추가했다.
+- 로컬: assembleDebug, testDebugUnitTest, lintDebug, assembleDebugAndroidTest 통과.
+  Android 15 ATD 에뮬레이터에서 계측 테스트 3개 통과(`OK (3 tests)`, 앱 자체 네이티브 검사 포함).
+  1.1.2 APK 서명 인증서가 1.1.1과 동일함을 확인했다.
+- 남은 확인: S25 스피커와 가능하면 유선 출력으로 1.1.1과 비교 청음, 추가 2 ms 지연 체감.
+
 ## 2026-09-29 메트로놈 (1.1.0)
 
 - 메트로놈 켜기/끄기, 40~240 BPM, 독립 클릭 음량, 설정 저장 구현.
