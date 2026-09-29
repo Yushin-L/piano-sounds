@@ -31,6 +31,9 @@ class MainActivity : Activity() {
     private lateinit var piano: PianoView
     private lateinit var preview: Button
     private lateinit var retry: Button
+    private lateinit var metronomeToggle: Switch
+    private var metronomeBpm = 100
+    private var metronomeVolume = 50
     private val count = AtomicLong()
     private val lastNote = AtomicInteger(-1)
     private val velocity = AtomicInteger()
@@ -52,6 +55,8 @@ class MainActivity : Activity() {
         window.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
         volumeControlStream = AudioManager.STREAM_MUSIC
         volume = getPreferences(MODE_PRIVATE).getInt("volume", 70).coerceIn(0, 100)
+        metronomeBpm = getPreferences(MODE_PRIVATE).getInt("metronomeBpm", 100).coerceIn(40, 240)
+        metronomeVolume = getPreferences(MODE_PRIVATE).getInt("metronomeVolume", 50).coerceIn(0, 100)
         audio = getSystemService(AudioManager::class.java)
         focusRequest = AudioFocusRequest.Builder(AudioManager.AUDIOFOCUS_GAIN)
             .setAudioAttributes(AudioAttributes.Builder().setUsage(AudioAttributes.USAGE_GAME)
@@ -178,8 +183,58 @@ class MainActivity : Activity() {
         val actions = LinearLayout(this)
         preview = button("소리 미리 듣기", true) { playPreview() }.apply { id = R.id.preview; isEnabled = false }
         actions.addView(preview, LinearLayout.LayoutParams(0, dp(52), 1f).apply { marginEnd = dp(6) })
-        actions.addView(button("전체 음 정지") { panic() }.apply { id = R.id.panic }, LinearLayout.LayoutParams(0, dp(52), 1f))
+        actions.addView(button("전체 음 정지") { metronomeToggle.isChecked = false; panic() }.apply { id = R.id.panic }, LinearLayout.LayoutParams(0, dp(52), 1f))
         body.item(actions); body.space(12)
+        val metronomeCard = column().apply { background = background(Color.WHITE); setPadding(dp(18), dp(12), dp(18), dp(12)) }
+        metronomeToggle = Switch(this).apply {
+            id = R.id.metronome_toggle; text = "메트로놈 · OFF"; textSize = 16f
+            setTextColor(ink); minHeight = dp(48); isEnabled = false
+            setOnCheckedChangeListener { _, checked ->
+                text = if (checked) "메트로놈 · ON" else "메트로놈 · OFF"
+                updateMetronome()
+            }
+        }
+        metronomeCard.item(metronomeToggle)
+        val tempoText = label("템포  $metronomeBpm BPM", 14f, ink, true)
+        metronomeCard.item(tempoText)
+        val tempoSlider = SeekBar(this).apply {
+            id = R.id.metronome_bpm; max = 200; progress = metronomeBpm - 40
+            contentDescription = "메트로놈 템포, 분당 박자 수"
+            setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
+                override fun onProgressChanged(bar: SeekBar?, progress: Int, fromUser: Boolean) {
+                    metronomeBpm = progress + 40; tempoText.text = "템포  $metronomeBpm BPM"
+                    updateMetronome()
+                    getPreferences(MODE_PRIVATE).edit().putInt("metronomeBpm", metronomeBpm).apply()
+                }
+                override fun onStartTrackingTouch(bar: SeekBar?) {}
+                override fun onStopTrackingTouch(bar: SeekBar?) {}
+            })
+        }
+        val tempoControls = LinearLayout(this).apply { gravity = Gravity.CENTER_VERTICAL }
+        tempoControls.addView(button("−") { tempoSlider.progress = (tempoSlider.progress - 1).coerceAtLeast(0) }.apply {
+            contentDescription = "템포 1 BPM 줄이기"
+        }, LinearLayout.LayoutParams(dp(56), dp(48)))
+        tempoControls.addView(tempoSlider, LinearLayout.LayoutParams(0, dp(48), 1f))
+        tempoControls.addView(button("+") { tempoSlider.progress = (tempoSlider.progress + 1).coerceAtMost(200) }.apply {
+            contentDescription = "템포 1 BPM 늘리기"
+        }, LinearLayout.LayoutParams(dp(56), dp(48)))
+        metronomeCard.item(tempoControls)
+        val clickText = label("클릭 음량  $metronomeVolume%", 14f, muted)
+        metronomeCard.item(clickText)
+        metronomeCard.item(SeekBar(this).apply {
+            id = R.id.metronome_volume; max = 100; progress = metronomeVolume
+            contentDescription = "메트로놈 클릭 음량"
+            setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
+                override fun onProgressChanged(bar: SeekBar?, progress: Int, fromUser: Boolean) {
+                    metronomeVolume = progress; clickText.text = "클릭 음량  $progress%"
+                    updateMetronome()
+                    getPreferences(MODE_PRIVATE).edit().putInt("metronomeVolume", progress).apply()
+                }
+                override fun onStartTrackingTouch(bar: SeekBar?) {}
+                override fun onStopTrackingTouch(bar: SeekBar?) {}
+            })
+        }, 48)
+        body.item(metronomeCard); body.space(12)
         audioText = label("피아노 음원을 준비하고 있습니다…", 12f, muted).apply { id = R.id.audio_status; accessibilityLiveRegion = View.ACCESSIBILITY_LIVE_REGION_POLITE }
         body.item(audioText)
         retry = button("오디오 다시 시작") { if (ready || starting) suspendPlayback(); requestPlayback() }
@@ -199,6 +254,9 @@ class MainActivity : Activity() {
         } else AlertDialog.Builder(this).setTitle("연주 입력 포트 선택")
             .setItems(ports.map { it.name }.toTypedArray()) { _, i -> midi.connect(ports[i]) }
             .setNegativeButton("닫기", null).show()
+    }
+    private fun updateMetronome() {
+        NativeEngine.metronome(ready && metronomeToggle.isChecked, metronomeBpm, metronomeVolume)
     }
     private fun showHelp() {
         val notice = assets.open("NOTICE.txt").bufferedReader().use { it.readText() }
@@ -241,6 +299,8 @@ class MainActivity : Activity() {
                 if (token != epoch || !foreground) return@post
                 starting = false; ready = result
                 piano.isEnabled = result; preview.isEnabled = result
+                metronomeToggle.isEnabled = result
+                updateMetronome()
                 if (result) audioText.text = "연주 준비 완료"
                 else audioText.text = "오디오를 시작하지 못했습니다. 다시 시작해 주세요."
             }
@@ -248,6 +308,8 @@ class MainActivity : Activity() {
     }
     private fun suspendPlayback() {
         epoch++; starting = false; ready = false
+        metronomeToggle.isChecked = false; metronomeToggle.isEnabled = false
+        updateMetronome()
         panic(); piano.isEnabled = false; preview.isEnabled = false
         voicesText.text = getString(R.string.active_voices, 0)
         audioWorker.execute { NativeEngine.stop() }

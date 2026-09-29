@@ -5,4 +5,7 @@
     <item name="panic" type="id" />
     <item name="preview" type="id" />
     <item name="volume" type="id" />
+    <item name="metronome_toggle" type="id" />
+    <item name="metronome_bpm" type="id" />
+    <item name="metronome_volume" type="id" />
 </resources>

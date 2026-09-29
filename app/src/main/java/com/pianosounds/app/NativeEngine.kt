@@ -10,6 +10,7 @@ object NativeEngine {
     external fun midi(status: Int, data1: Int, data2: Int)
     external fun panic()
     external fun volume(value: Float)
+    external fun metronome(enabled: Boolean, bpm: Int, volume: Int)
     external fun stats(): IntArray
     // Offline checks use a separate synth, never the live audio stream.
     external fun selfTest(assets: AssetManager, wavPath: String): String

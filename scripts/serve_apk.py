@@ -7,7 +7,7 @@ from pathlib import Path
 import shutil
 from urllib.parse import urlsplit
 
-APK = Path(__file__).resolve().parents[1] / "dist/PianoSounds-1.0.2-debug.apk"
+APK = Path(__file__).resolve().parents[1] / "dist/PianoSounds-1.1.0-debug.apk"
 PAGE = """<!doctype html>
 <html lang="ko"><meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -20,8 +20,8 @@ border-radius: 12px; text-align: center; text-decoration: none}
 li {margin: 12px 0}
 </style>
 <h1>Piano Sounds</h1><p>KeyLab과 함께 연주하는 오프라인 피아노</p>
-<a href="/PianoSounds-1.0.2-debug.apk" download>Android 앱 다운로드 · 약 85MB</a>
-<p>버전 1.0.2 · 개발용 서명 APK</p>
+<a href="/PianoSounds-1.1.0-debug.apk" download>Android 앱 다운로드 · 약 85MB</a>
+<p>버전 1.1.0 · 메트로놈 추가 · 개발용 서명 APK</p>
 <ol><li>다운로드한 APK를 열어 설치하세요. 설치 출처 허용을 요청하면
 현재 사용 중인 브라우저 또는 내 파일에 허용해 주세요.</li>
 <li>앱을 열고 <strong>소리 미리 듣기</strong>로 소리를 확인하세요.</li>
